@@ -5,8 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
-using Service.Features.Commands;
-using Service.Features.CustomerFeatures.Queries;
+using Service.HotelFeatures.Commands;
+using Service.HotelFeatures.Queries;
 
 namespace API.HotelBooking.Controllers
 {
@@ -26,13 +26,53 @@ namespace API.HotelBooking.Controllers
         {
             return Ok(await Mediator.Send(command));
         }
+        /// <summary>
+        /// get hotel  by id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(Guid id)
         {
             return Ok(await Mediator.Send(new GetHotelByIdQuery { hotelId = id }));
         }
+        /// <summary>
+        /// list of hotels
+        /// </summary>
+        /// <returns></returns>
 
+        [HttpGet]
+        [Route("")]
+        public async Task<IActionResult> GetAll()
+        {
+            return Ok(await Mediator.Send(new GetAllHotelQuery()));
+        }
+        /// <summary>
+        /// delte hotel  by id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
 
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            return Ok(await Mediator.Send(new DeleteHotelByIdCommand { hotelId = id }));
+        }
+        /// <summary>
+        /// update hotel  by id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(Guid id, UpdateHotelCommand command)
+        {
+            if (id != command.hotelId)
+            {
+                return BadRequest();
+            }
+            return Ok(await Mediator.Send(command));
+        }
     }
 }

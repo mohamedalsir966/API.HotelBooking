@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Service.Features.Commands
+namespace Service.HotelFeatures.Commands
 {
 
     public class CreateNewHotelCommand : IRequest<Guid>

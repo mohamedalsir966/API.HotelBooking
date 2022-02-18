@@ -14,5 +14,8 @@
 	<ItemGroup>
 		<ProjectReference Include="..\Persistence\Persistence.csproj" />
 	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="BookingFeatures\Queries\" />
+	</ItemGroup>
 
 </Project>

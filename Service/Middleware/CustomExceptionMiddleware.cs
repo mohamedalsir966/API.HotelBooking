@@ -48,13 +48,7 @@ namespace Service.Middleware
                     code = (int)HttpStatusCode.BadRequest;
                     result = badRequestException.Message;
                     break;
-                //case DeleteFailureException deleteFailureException:
-                //    code = (int)HttpStatusCode.BadRequest;
-                //    result = deleteFailureException.Message;
-                //    break;
-                //case NotFoundException _:
-                //    code = (int)HttpStatusCode.NotFound;
-                //    break;
+               
                 default:
                     code = (int)HttpStatusCode.InternalServerError;
                     break;
