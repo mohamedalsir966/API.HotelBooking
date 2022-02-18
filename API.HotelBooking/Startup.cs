@@ -39,13 +39,11 @@ namespace API.HotelBooking
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddControllers();
             services.AddDbContext(Configuration, configRoot);
             services.AddScopedServices();
             services.AddSwaggerOpenAPI();
             services.AddServiceLayer();
-            //services.AddMediatR(Assembly.GetExecutingAssembly());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -55,6 +53,7 @@ namespace API.HotelBooking
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.ConfigureCustomExceptionMiddleware();
 
             app.UseRouting();
             app.ConfigureSwagger();
@@ -63,13 +62,6 @@ namespace API.HotelBooking
                 endpoints.MapControllers();
             });
 
-
-
-
-            //app.UseSwagger();
-            //app.UseSwaggerUI(c => {
-            //    c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V2");
-            //});
         }
     }
 }

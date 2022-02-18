@@ -1,5 +1,6 @@
 ﻿using Domain.Entities;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using Persistence;
 using System;
 using System.Collections.Generic;
@@ -8,8 +9,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-
-namespace Service.Features.CustomerFeatures.Queries
+namespace Service.HotelFeatures.Queries
 {
     public class GetHotelByIdQuery : IRequest<Hotel>
     {
@@ -28,7 +28,7 @@ namespace Service.Features.CustomerFeatures.Queries
             }
             public async Task<Hotel> Handle(GetHotelByIdQuery request, CancellationToken cancellationToken)
             {
-                var hotel =  _context.Hotel.Where(a => a.Id == request.hotelId).FirstOrDefault();
+                var hotel = await _context.Hotel.Where(a => a.Id == request.hotelId).FirstOrDefaultAsync();
                 if (hotel == null) return null;
                 return hotel;
             }
