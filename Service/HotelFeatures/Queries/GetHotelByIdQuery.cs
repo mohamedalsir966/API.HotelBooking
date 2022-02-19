@@ -15,10 +15,6 @@ namespace Service.HotelFeatures.Queries
     {
         public Guid hotelId { get; set; }
 
-        public class Response : BaseResponse
-        {
-
-        }
         public class GetHotelByIdQueryHandler : IRequestHandler<GetHotelByIdQuery, Hotel>
         {
             private readonly IApplicationDbContext _context;

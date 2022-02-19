@@ -8,18 +8,11 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-//GetAllHotelQuery
 
 namespace Service.HotelFeatures.Queries
 {
     public class GetAllHotelQuery : IRequest<IEnumerable<Hotel>>
     {
-        public Guid hotelId { get; set; }
-
-        public class Response : BaseResponse
-        {
-
-        }
         public class GetAllHotelQueryHandler : IRequestHandler<GetAllHotelQuery, IEnumerable< Hotel>>
         {
             private readonly IApplicationDbContext _context;
