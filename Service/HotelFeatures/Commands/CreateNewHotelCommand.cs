@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace Service.HotelFeatures.Commands
 {
 
-    public class CreateNewHotelCommand : IRequest<Guid>
+    public class CreateNewHotelCommand : IRequest<Guid?>
     {
         public string Name { get; set; }
         public string City { get; set; }
@@ -24,14 +24,14 @@ namespace Service.HotelFeatures.Commands
         {
 
         }
-        public class CreateNewHotelCommandHandler : IRequestHandler<CreateNewHotelCommand, Guid>
+        public class CreateNewHotelCommandHandler : IRequestHandler<CreateNewHotelCommand, Guid?>
         {
             private readonly IApplicationDbContext _context;
             public CreateNewHotelCommandHandler(IApplicationDbContext context)
             {
                 _context = context;
             }
-            public async Task<Guid> Handle(CreateNewHotelCommand request, CancellationToken cancellationToken)
+            public async Task<Guid?> Handle(CreateNewHotelCommand request, CancellationToken cancellationToken)
             {
                 var Hotel = new Hotel
                 {
